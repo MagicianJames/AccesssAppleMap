@@ -6,9 +6,15 @@
 //
 
 import UIKit
+//import map here
 import MapKit
 
 class ViewController: UIViewController, MKMapViewDelegate {
+    
+    //Note here you should add permission on Info.plist
+    //Add Privacy - Location When In Use Usage Description at key
+    //Value is Display the nearest favourite places
+    //add permission -> right click -> Add row 
     
     @IBOutlet var mapView: MKMapView!
     let locationManager = CLLocationManager()
@@ -42,6 +48,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     func loadPlaces() {
         var places: [Place] = []
+        
+        //Add places with latitude and longtitude
         places.append(Place(name: "Shinsen Fish Market", lat: 13.7437582, long: 100.5732368))
         places.append(Place(name: "Tenyuu Grand", lat: 13.7231569, long: 100.5336795))
         
@@ -52,6 +60,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         //            return annotation
         //        }))
         
+        //Pin location
         for place in places {
             let annotation = MKPointAnnotation()
             annotation.title = place.name
@@ -64,6 +73,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     func setMapZoomLevel() {
+        //zoom map
+        
         if let current = locationManager.location{
             
 //            let center = CLLocationCoordinate2D(latitude: 13.7231569, longitude: 100.5336795)
